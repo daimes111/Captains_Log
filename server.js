@@ -50,7 +50,7 @@ app.get('/logs/new', (req,res) => {
 
 //create
 app.post('/logs', (req,res) => {
-    req.body.isShipBroken === 'off' || req.body.isShipBroken === false ? req.body.isShipBroken = false : req.body.isShipBroken = true
+    req.body.isShipBroken === 'on' || req.body.isShipBroken === true ? req.body.isShipBroken = true : req.body.isShipBroken = false
     Log.create(req.body, (err, createdLog) => {
         if(err) {
             console.log(err)
@@ -65,3 +65,15 @@ app.post('/logs', (req,res) => {
 
 
 //show
+app.get('/logs/:id', (req,res) => {
+    Log.findById(req.params.id, (err, foundLogs) => {
+        if(err) {
+            console.log(err)
+            res.status(400).send(err)
+        } else {
+            res.render('captains_log/Show', {
+                captains_log: foundLogs
+            })
+        }
+    })
+})
