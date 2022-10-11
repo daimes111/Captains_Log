@@ -40,7 +40,15 @@ app.get('/logs/new', (req,res) => {
 
 //create
 app.post('/logs', (req,res) => {
-    res.send(req.body)
+    req.body.isShipBroken === true ? req.body.isShipBroken = true : req.body.isShipBroken = false
+    Log.create(req.body, (err, createdLog) => {
+        if (err) {
+            console.log(err)
+            res.status(400).send(err)
+        } else {
+            res.redirect('captains_log/Show')
+        }
+    })
 })
 
 //edit
