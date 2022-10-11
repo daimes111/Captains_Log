@@ -8,7 +8,7 @@ class New extends React.Component {
             <form method="POST" action="/logs">
                 <input type="text" name="title" placeholder="Entry Title"/><br />
                 <input type="textarea" name="entry" placeholder="Entry"/><br />
-                Ship Broken?: <input type="checkbox" name="shipIsBroken"  /><br />
+                Ship Broken?: <input type="checkbox" name="shipIsBroken" value="true"  /><br />
                 <input type="submit" value="Submit Log"/>
             </form>
             </>
