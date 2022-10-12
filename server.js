@@ -17,7 +17,7 @@ mongoose.connection.once('open', () => {
 })
 
 // app.use(bodyParser())
-app.use(methodOverride('method'))
+app.use(methodOverride('_method'))
 app.listen(3002, () => {
     console.log('Listening to Port 3002')
 })
@@ -31,7 +31,7 @@ app.get('/logs', (req, res) => {
             res.status(400).send(err)
         } else {
             res.render('captains_log/Index', {
-                captains_log: foundLogs
+                logs: foundLogs
             })
         }
     })
@@ -43,6 +43,16 @@ app.get('/logs/new', (req,res) => {
 })
 
 //delete
+app.delete('/logs/:id', (req,res) => {
+    Log.findByIdAndDelete(req.params.id, (err, deletedLog) => {
+        if(err) {
+            console.log(err)
+            res.status(400).send(err)
+        } else {
+            res.redirect('/logs')
+        }
+    })
+})
 
 
 //update
@@ -50,7 +60,8 @@ app.get('/logs/new', (req,res) => {
 
 //create
 app.post('/logs', (req,res) => {
-    req.body.isShipBroken === 'on' || req.body.isShipBroken === true ? req.body.isShipBroken = true : req.body.isShipBroken = false
+    console.log(req.body.isShipBroken)
+    req.body.isShipBroken === 'undefined' || req.body.isShipBroken !== true ? req.body.isShipBroken = false : req.body.isShipBroken = true
     Log.create(req.body, (err, createdLog) => {
         if(err) {
             console.log(err)
@@ -62,6 +73,18 @@ app.post('/logs', (req,res) => {
 })
 
 //edit
+app.get('/logs/:id/edit', (req,res) => {
+    Log.findById(req.params.id, (err, editLog) => {
+        if(err) {
+            console.log(err)
+            res.status(400).send(err)
+        } else {
+            res.render('captains_log/Edit', {
+                log: editLog
+            })
+        }
+    })
+})
 
 
 //show
@@ -72,7 +95,7 @@ app.get('/logs/:id', (req,res) => {
             res.status(400).send(err)
         } else {
             res.render('captains_log/Show', {
-                captains_log: foundLogs
+                log: foundLogs
             })
         }
     })
