@@ -27,7 +27,7 @@ app.listen(3002, () => {
 app.get('/logs', (req, res) => {
     Log.find({}, (err, foundLogs) => {
         if(err) {
-            console.log(err)
+            console.error(err)
             res.status(400).send(err)
         } else {
             res.render('captains_log/Index', {
@@ -46,7 +46,7 @@ app.get('/logs/new', (req,res) => {
 app.delete('/logs/:id', (req,res) => {
     Log.findByIdAndDelete(req.params.id, (err, deletedLog) => {
         if(err) {
-            console.log(err)
+            console.error(err)
             res.status(400).send(err)
         } else {
             res.redirect('/logs')
@@ -56,15 +56,27 @@ app.delete('/logs/:id', (req,res) => {
 
 
 //update
+app.put('/logs/:id', (req, res) => {
+    req.body.isShipBroken = req.body.isShipBroken === 'true' || req.body.isShipBroken === 'on'? true : false 
+    Log.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedFruit) => {
+        if(err) {
+            console.error(err)
+            res.status(400).send(err)
+        } else {
+            res.redirect(`/logs/${updatedFruit.id}`)
+        }
+    })
+})
 
 
 //create
 app.post('/logs', (req,res) => {
     console.log(req.body.isShipBroken)
-    req.body.isShipBroken === 'undefined' || req.body.isShipBroken !== true ? req.body.isShipBroken = false : req.body.isShipBroken = true
+    req.body.isShipBroken = req.body.isShipBroken === 'true' ? true : false    
+    console.log(req.body.isShipBroken)
     Log.create(req.body, (err, createdLog) => {
         if(err) {
-            console.log(err)
+            console.error(err)
             res.status(400).send(err)
         } else {
             res.redirect('/logs')
@@ -76,7 +88,7 @@ app.post('/logs', (req,res) => {
 app.get('/logs/:id/edit', (req,res) => {
     Log.findById(req.params.id, (err, editLog) => {
         if(err) {
-            console.log(err)
+            console.error(err)
             res.status(400).send(err)
         } else {
             res.render('captains_log/Edit', {
@@ -91,7 +103,7 @@ app.get('/logs/:id/edit', (req,res) => {
 app.get('/logs/:id', (req,res) => {
     Log.findById(req.params.id, (err, foundLogs) => {
         if(err) {
-            console.log(err)
+            console.error(err)
             res.status(400).send(err)
         } else {
             res.render('captains_log/Show', {
