@@ -1,5 +1,6 @@
 const React = require('react')
 
+
 class Default extends React.Component{
     render(){
         const {title, log} = this.props
@@ -17,6 +18,7 @@ class Default extends React.Component{
                         { log? <a href={`/logs/${log._id}`}> {log.title} Show Page</a> : '' }
                     </nav>
                     <h1>{title}</h1>
+                    {/* <div class="lines"></div> */}
                     {this.props.children}
                 </body>
             </html>

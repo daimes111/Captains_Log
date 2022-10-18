@@ -1,52 +1,90 @@
-@import url('https://fonts.googleapis.com/css?family=Comfortaa|Righteous');
-
+@import url('http://fonts.cdnfonts.com/css/royal-riot');
 body {
-  background: url(https://images.clipartlogo.com/files/istock/previews/8741/87414357-apple-seamless-pastel-colors-pattern-fruits-texture-background.jpg);
-  margin: 0;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Righteous', cursive;
+  background: url(https://images6.alphacoders.com/768/768839.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 600px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 h1 {
   font-family: 'Righteous', cursive;
   background: antiquewhite;
+  opacity: .7;
   margin:0;
   margin-bottom: .5em;
   padding: 1em;
   text-align: center;
 }
 
-a {
-  color: orange;
-  text-decoration: none;
-  text-shadow: 1px 1px 1px black;
-  font-size: 1.5em;
-  background: rgba(193, 235, 187, .9);
-}
-
-a:hover {
-  color: ghostwhite;
+ul {
+  /* content: center;
+  color: white; */
+  background-color: rgba(246, 239, 231, .5);
+  font-size: 22px;
+  padding: 0;
+  width: 100%;
+  /* font-family: courier, monospace; */
+  border: 1px solid #dedede;
+  /* position: relative; */
 }
 
 li {
+  font-family: 'Righteous', cursive;
   list-style: none;
+  border-bottom: 1px dotted #ccc;
+  text-indent: 40px;
+  height: auto;
+  padding: 10px;
+  text-transform: capitalize;
+  display: block;
 }
 
-li a {
-  color: mediumseagreen;
-}
+.lines {
+border-left: 1px solid #ffaa9f;
+border-right: 1px solid #ffaa9f;
+width: 2px;
+/* float: right; */
+height: 490px;
+margin-left: 40px;
+position: absolute;
+}​
 
-input[type=text] {
+a {
+  color: white;
+  font-size: 10px;
+}
+input[type=text]{
   padding: .3em;
+ 
 }
 
 input[type=submit] {
   padding: .3em;
-  color: orange;
-  background: mediumseagreen;
-  font-size: 1em;
+  font-size: .6em;
   border-radius: 10%;
+ 
+
 }
 nav {
     display: flex;
     justify-content: space-around;
+    width: 100%
+}
+
+.show {
+  font-family: 'Royal Riot', sans-serif;   
+  font-size: larger;
+  border: 1px solid #dedede;  
+  background-color: rgba(246, 239, 231, .5);                
+}
+
+h2, p, h4 {
+  border-bottom: 1px dotted #ccc;
+  text-indent: 50px;
+
 }

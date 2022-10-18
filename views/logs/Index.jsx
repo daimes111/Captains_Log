@@ -6,6 +6,7 @@ class Index extends React.Component {
         const {logs} = this.props
         return(
             <Default title="Captains Log Entries">
+            <div className="lines"></div>
             <ul>
                 {logs.map((log) => {
                     const {title, entry, isShipBroken, _id} = log
@@ -21,6 +22,7 @@ class Index extends React.Component {
                     )
                 })}
             </ul>
+            
             </Default>
         )
     }

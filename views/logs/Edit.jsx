@@ -6,7 +6,7 @@ class Edit extends React.Component {
         const { title, entry, isShipBroken, _id} = this.props.log
         return(
             <Default title={`Edit ${title}`} log={this.props.log}>
-                
+                 
                 <form method="POST" action={`/logs/${_id}?_method=PUT`}>
                     Title: <input type="text" name="title" defaultValue={title} /><br />
                     Entry: <input type="text" name="entry" defaultValue={entry} /><br />

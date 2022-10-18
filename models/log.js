@@ -8,6 +8,7 @@ const logsSchema = new mongoose.Schema({
     // date: {CurrentDateTime},
     // isShipBroken: { type: Boolean, default: true }
     isShipBroken: Boolean
+    // date
 })
 
 const Log = mongoose.model('Log', logsSchema)
